@@ -15,3 +15,4 @@ Por último, estaba pensando la opción de integrar algún método de pago como 
 El mockup de la web sería tal que así: [Figma](https://www.figma.com/file/IT6zubAuZoXAVIjKBLen9v/Peluchitos-Antonio-Ruiz?type=design&node-id=0-1&t=pf7qRCCWBJbJvmWF-0)
 
 # Modelo Entidad/Relación
+![image](https://github.com/rjantonio/Peluchitos/assets/55783021/3c097e72-c160-46a1-88a7-5c2ca34fa553)
