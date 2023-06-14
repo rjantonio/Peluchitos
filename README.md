@@ -9,3 +9,9 @@ He pensado usar para la parte del BackEnd Mysql como gestor de base de datos y P
 Para la parte del FrontEnd he pensado usar CSS y JS, ayudándome con JQuery y AJAX para añadir un poco de complejidad a la aplicación.
 
 Por último, estaba pensando la opción de integrar algún método de pago como PayPal para darle algo de originalidad al proyecto, ¿cómo lo veis?
+
+# Mockup
+
+El mockup de la web sería tal que así: link
+
+# Modelo Entidad/Relación
