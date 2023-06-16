@@ -16,3 +16,6 @@ El mockup de la web sería tal que así: [Figma](https://www.figma.com/file/IT6z
 
 # Modelo Entidad/Relación
 ![image](https://github.com/rjantonio/Peluchitos/assets/55783021/3c097e72-c160-46a1-88a7-5c2ca34fa553)
+
+# Vídeo explicativo
+https://www.youtube.com/watch?v=mCZ_rMVl2U8
