@@ -22,34 +22,17 @@
     use App\Http\Controllers\HomeController;
 
 
-
-    $usuario = Session::get('usuario');
-
-    //var_dump ($usuario['idusu']);
-
-    if(isset($busqueda)) {
-        $lista = HomeController::getTipo($busqueda);
-        if(empty($lista)) {
-            $lista = null;
-        }
-    } else {
-        $lista = HomeController::getAll();
-    }
-
-  
-    //var_dump ($lista[0]);
-
-
-    //var_dump($array);
-    //var_dump(session()->all());
-
     $user = session()->get('usuario');
 
     $aux = json_decode(json_encode($user[0]), true);
 
     $user = $aux;
 
-    //var_dump($user);
+    $lista = HomeController::getWishlist($user['id']);
+
+    //var_dump($lista);
+
+
 
 @endphp
 
@@ -69,14 +52,17 @@
        
         foreach ($lista as $registro) {
 
-            $array = json_decode(json_encode($registro), true);
+            $array = HomeController::getById($registro->articulo_id);
+
+            $aux = json_decode(json_encode($array[0]), true);
+
+            $array = $aux;
 
 
             @endphp
 
             <class id="item" value="@php echo $array['idA']; @endphp">
 
-                <!-- <img src="{{ asset('storage/storage/images/'.  $array['imagen']) }}" alt=""> <br>  -->
 
                 @if( strlen($array['imagen']) < 17) 
                     <img src="{{ asset('storage/storage/images/'.  $array['imagen']) }}" alt="">
@@ -116,11 +102,7 @@
     }
         @endphp
 
-        @if($user['isAdmin'] == 1) 
-        <class id="item" style="background-color: transparent;box-shadow:none" value="nuevoitem">
-            <i style="font-size: 10vw" class="bi bi-plus-square-fill"></i>
-        </class>
-        @endif
+
         
 
 

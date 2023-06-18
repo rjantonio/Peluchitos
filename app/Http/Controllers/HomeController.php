@@ -39,6 +39,14 @@ class HomeController extends Controller
         return view('home.aboutus');
     }
 
+    public function nuevoitem () {
+        return view('home.nuevoitem');
+    }
+
+    public function wishlistShow () {
+        return view('home.wishlist');
+    }
+
     public function getAll () {
 
         $todo = DB::select("SELECT * FROM articulo");
@@ -117,6 +125,60 @@ class HomeController extends Controller
 
         session()->flash('success', 'Producto eliminado de la BD');
         return view('home.admindashboard');
+
+    }
+
+    public function creaArticulo (Request $request) {
+
+        /* $nombre = $_POST['nombre'];
+        $tipo = $_POST['tipo'];
+        $precio = $_POST['precio'];
+        $stock = $_POST['stock'];
+        $descripcion = $_POST['descripcion']; */
+        $nombre = $request->nombre;
+        $tipo = $request->tipo;
+        $precio = $request->precio;
+        $stock = $request->stock;
+        $descripcion = $request->descripcion;
+
+        /* Comprueba si el admin ha añadido foto para el producto o pone una por defecto */
+        
+        $imagen = time().".".$request->inputimagen->getClientOriginalExtension(); 
+
+        $request->inputimagen->storeAs('public/storage/images', $imagen); #Guardo la imagen en local
+
+        DB::table('articulo')->insert([
+            'nombre' => $nombre,
+            'tipo' => $tipo,
+            'precio' => $precio,
+            'stock' => $stock,
+            'descripcion' => $descripcion,
+            'imagen' => $imagen,
+        ]);
+
+        session()->flash('success', 'Producto creado con éxito');
+        return redirect()->back();    
+    }
+
+    public function getImagenById ($id) {
+
+        $imagen = DB::table('articulo')->where('idA', $id)->value('imagen');
+
+        return $imagen;
+
+    }
+
+    public function getWishlist ($id) {
+
+        $wishlist = DB::select("SELECT * FROM wishlist WHERE usuario_id = '$id'");
+        /* $wishlist = DB::table('wishlist')->where('usuario_id', $id)->value('articulo_id'); */
+
+        /* foreach ($wishlist as $item) {
+            array_push($suma,$item->articulo_id);
+        } */
+
+
+        return $wishlist; 
 
     }
 }

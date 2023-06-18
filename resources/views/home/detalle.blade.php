@@ -45,7 +45,11 @@ $user = session()->get('usuario');
 
 <div id="todo">
     <div id="foto">
-        <img src="{{ $array['imagen']; }}" alt="">
+      @if( strlen($array['imagen']) < 17) 
+          <img src="{{ asset('storage/storage/images/'.  $array['imagen']) }}" alt="">
+      @else 
+          <img src="{{ $array['imagen']; }}" alt=""> 
+      @endif
     </div>
     <div id="todotexto">
       <div id="texto">
@@ -58,19 +62,26 @@ $user = session()->get('usuario');
             {{ $array['descripcion']; }}
         </div>
       <div id="carrito">
-          Cantidad:
-          <select  name="cantidad" id="cantidad">
-          @for ($i = 1; $i <= $array["stock"]; $i++)
-              <option value="{{ $i }}">{{ $i }}</option>
-          @endfor
-          </select>
-         
-          <button type="submit" id="butcar" class="btn btn-primary"><span class="bi bi-cart"></span> Añadir al carrito</button>
+        @if($array['stock'] == 0)
+            <span class="text-danger"><h3>Fuera de Stock</h3></span>
+        @else
+          <span class="text-info font-weight-bold">Cantidad:</span>
+          <select  name="cantidad" id="cantidad" >
+            
+              @for ($i = 1; $i <= $array["stock"]; $i++)
+                <option value="{{ $i }}">{{ $i }}</option>
+              @endfor
+              
+            </select>
+            
+            <button type="submit" id="butcar" class="btn btn-primary"><span class="bi bi-cart"></span> Añadir al carrito</button>
+            @endif
 
+            <button type="submit" id="wishlist" class="btn btn-success"><span class="bi bi-heart"></span> Lista de Deseados</button>
           
 
       </div>
-      <h5>Envío gratis</h5>
+      <h5 class="text-success font-weight-bold">Envío gratis</h5>
     </div>
     
 </div>
@@ -85,6 +96,12 @@ $user = session()->get('usuario');
 @if(session('success'))
   <div style="display: inline-block" class="alert alert-success">
     {{ session('success') }}
+  </div>
+@endif 
+
+@if(session('error'))
+  <div style="display: inline-block" class="alert alert-danger">
+    {{ session('error') }}
   </div>
 @endif 
 

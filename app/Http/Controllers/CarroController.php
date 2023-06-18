@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Usuario;
 use App\Models\Articulo;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CarroController extends Controller
 {
@@ -50,7 +51,7 @@ class CarroController extends Controller
         }
 
         session()->put('cart', $cart);
-        return redirect()->back()->with('success', 'Producto añadido');
+        return redirect()->back()->with('success', 'Producto añadido al carro');
 
     }
 
@@ -64,6 +65,26 @@ class CarroController extends Controller
             }
             session()->flash('success', 'Producto eliminado');
         }
+    }
+
+    public function wishlist($id) {
+        $user = session()->get('usuario');
+
+        DB::beginTransaction();
+
+        try{
+            DB::table('wishlist')->insert([
+                'articulo_id' => $id,
+                'usuario_id' => $user[0]->id,
+            ]);
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            return redirect()->back()->with('error', 'Este producto ya está en tu lista');
+        }
+
+        return redirect()->back()->with('success', 'Producto añadido a la lista de deseados');
+        
     }
 
 

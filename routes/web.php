@@ -39,17 +39,23 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/detalle/{parametro?}', [HomeController::class, 'detalle']);
 
-Route::get('/detalle/{parametro?}/{parametro1?}', [HomeController::class, 'puntua']);
+Route::get('/detalle/{parametro?}/{parametro1?}', [HomeController::class, 'puntua'])->middleware('auth');
 
 Route::get('/carrito', [CarroController::class, 'show'])->name('carrito');
 
 Route::get('/add/{id?}/{cantidad}', [CarroController::class, 'add'])->name('add')->middleware('auth');
+
+Route::get('/wishlist/{id?}', [CarroController::class, 'wishlist'])->name('wishlist')->middleware('auth');
 
 Route::delete('/remove', [CarroController::class, 'remove'])->name('remove');
 
 Route::get('/adminDashboard', [HomeController::class, 'dashboard'])->name('dashboard')->middleware('admin');
 
 Route::get('/pedidosAdmin', [HomeController::class, 'pedidosShow'])->name('pedidosAdmin')->middleware('admin');
+
+Route::get('/nuevoitem', [HomeController::class, 'nuevoitem'])->name('nuevoitem')->middleware('admin');
+
+Route::post('/creaArticulo', [HomeController::class, 'creaArticulo'])->name('creaArticulo')->middleware('admin');
 
 Route::delete('/removeDB', [HomeController::class, 'removeDB'])->name('removeDB');
 
@@ -61,6 +67,8 @@ Route::get('/pedido/{idU?}/{total?}', [PedidoController::class, 'pedido'])->name
 
 Route::get('/cambiarEstado/{idP?}/{estado?}', [PedidoController::class, 'cambiarEstado'])->name('cambiarEstado');
 
-Route::get('/mispedidos/{id?}', [PedidoController::class, 'misPedidos']);
+Route::get('/mispedidos/{id?}', [PedidoController::class, 'misPedidos'])->middleware('auth');
+
+Route::get('/wishlistShow/{id?}', [HomeController::class, 'wishlistShow'])->middleware('auth');
 
 Route::get('/aboutus', [HomeController::class, 'aboutus'])->name('aboutus');

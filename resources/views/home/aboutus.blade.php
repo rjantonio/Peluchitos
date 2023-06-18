@@ -56,8 +56,32 @@
    
 @include('home.nav')
 
+<!-- <div id="top" style="width:100%;height:auto;background-color:blue;">
+    <div id="nosotros">¿Quién soy?</div>
+    <div id="respuesta">Soy asñlfkasñlfjk</div>
+</div> -->
 
-      <div>Video</div>
+<div class="bg-light">
+  <div class="container py-5">
+    <div class="row h-100 align-items-center py-5">
+      <div class="col-lg-5">
+        <h1 class="display-4">Sobre Mí</h1>
+        <p class="lead text-muted mb-0">Soy María Concepción, madre de Antonio, que va a sacar muy buena nota en este proyecto; me encanta hacer manualidades y en esta página os ofrezco adquirir algunos de mis productos hechos a mano con mucho cariño =)</p>
+      </div>
+      <div class="col-lg-7 d-none d-lg-block"><video width="960" height="720" controls  style="display:block;margin-left:auto;margin-right:auto">
+        <source src="{{ asset('storage/storage/video/aboutus.mp4')}}" type="video/mp4">
+        Tu navegador no puede reproducir vídeo :(
+    </video></div>
+    </div>
+  </div>
+</div>
+
+<!-- <div id="center">
+    <video width="960" height="720" controls  style="display:block;margin-left:auto;margin-right:auto">
+        <source src="{{ asset('storage/storage/video/aboutus.mp4')}}" type="video/mp4">
+        Tu navegador no puede reproducir vídeo :(
+    </video>
+</div> -->
 
       
 

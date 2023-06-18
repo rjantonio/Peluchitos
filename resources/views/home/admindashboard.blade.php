@@ -79,7 +79,13 @@
           @php $array = json_decode(json_encode($item), true); @endphp
           <tr data-id="{{ $array['idA'] }}">
 
-              <td><img src="{{$array['imagen']}}" alt=""></td>
+              <td>
+                @if( strlen($array['imagen']) < 17) 
+                    <img src="{{ asset('storage/storage/images/'.  $array['imagen']) }}" height="50px" alt="">
+                @else 
+                    <img src="{{ $array['imagen']; }}" alt=""> 
+                @endif
+              </td>
               <td id="fototexto"><b>{{$array['nombre']}}</b></td>
               <td>{{$array['tipo'] }}</td>
               <td>{{$array['precio'] }}€</td>

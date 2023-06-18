@@ -21,7 +21,7 @@ class CreateArticuloTable extends Migration
             $table->integer('stock');
             $table->string('descripcion');
             $table->string('imagen');
-            $table->integer('puntuacion');
+            $table->integer('puntuacion')->default(0);
             $table->timestamps();
         });
     }

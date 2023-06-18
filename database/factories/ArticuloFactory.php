@@ -23,7 +23,7 @@ class ArticuloFactory extends Factory
             "nombre" => $this->faker->firstName(),
             "tipo" => $this->faker->randomElement($array = ['Manta', 'Peluche', 'Pulsera', 'Monedero', 'Bolso', 'Otro']) ,
             "precio" => $this->faker->randomFloat($nbMaxDecimals = 2, $min = 1, $max = 50),
-            "stock"  => $this->faker->randomDigit(),
+            "stock"  => $this->faker->randomDigitNot(0),
             "imagen" => $this->faker->imageUrl($width = 640, $height = 480),
             "descripcion" => $this->faker->sentence(),
             "puntuacion" => $this->faker->numberBetween($min = 0, $max = 4),

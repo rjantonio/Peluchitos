@@ -14,8 +14,11 @@ function inicio () {
             var valor = child.getAttribute('value');
             console.log(valor);
 
-            window.location.href = "/detalle/"+valor;
-
+            if (valor == 'nuevoitem') {
+                window.location.href = "/nuevoitem";
+            } else {
+                window.location.href = "/detalle/"+valor;
+            }
     })
 }
 

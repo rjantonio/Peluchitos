@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/index"><img src="{{ asset('storage/images') }}/logo.svg" height="30px" ></a>
+        <a class="navbar-brand" href="/index"><img src="{{ asset('storage/storage/images') }}/logo.svg" height="30px" ></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -68,7 +68,11 @@
               @foreach(session('cart') as $id => $details)
                 <div class="row cart-detail">
                   <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                    <img src="{{ $details['imagen'] }}" >
+                  @if( strlen( $details['imagen']) < 17) 
+                      <img src="{{ asset('storage/storage/images/'.   $details['imagen']) }}" height="70px" width="100%" alt="">
+                  @else 
+                      <img src="{{  $details['imagen'] }}" alt="">
+                  @endif
                   </div>
                   <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
                     <p>{{ $details['nombre_articulo'] }}</p>
@@ -93,6 +97,7 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="logout">
                 <a class="dropdown-item" href="/mispedidos">Mis Pedidos</a>
+                <a class="dropdown-item" href="/wishlistShow">Lista de Deseados</a>
                 <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
               </div>
         </div>

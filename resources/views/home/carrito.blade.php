@@ -76,8 +76,14 @@
           @php $total += $item['precio'] * $item['cantidad'] @endphp
           <tr data-id="{{ $id }}">
 
-              <!-- <td>{{ $item['imagen']??0 }}{{$item['nombre_articulo']}}</td> -->
-              <td id="fototexto"><img src="{{ $item['imagen'] }}" height="100" width="100" alt=""><b>{{$item['nombre_articulo']}}</b></td>
+              <td id="fototexto">
+                  @if( strlen($item['imagen']) < 17) 
+                      <img src="{{ asset('storage/storage/images/'.  $item['imagen']) }}"  height="100" width="100" alt="">
+                  @else 
+                      <img src="{{ $item['imagen']; }}"  height="100" width="100" alt="">
+                  @endif
+                <b>{{$item['nombre_articulo']}}</b>
+              </td>
               <td>{{$item['precio']??0 }}€</td>
               <td><input id="numinp" type="number" value="{{$item['cantidad']??0 }}" min="1" max="{{$item['stock'] }}" class="form-control"></td>
               <td  id="sumacant" class="text-center">{{($item['cantidad']??1) * ($item['precio']??0)}}€</td>
