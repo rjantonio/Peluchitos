@@ -21,4 +21,4 @@ El mockup de la web sería tal que así: [Figma](https://www.figma.com/file/IT6z
 https://www.youtube.com/watch?v=mCZ_rMVl2U8
 
 # Despliegue 
-Realizado con AWS: http://ec2-3-87-79-61.compute-1.amazonaws.com/
+Realizado con AWS: http://54.166.83.134/
